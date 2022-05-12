@@ -1,39 +1,60 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState } from 'react';
+import { useFormik } from 'formik'
 
 
 function Registration() {
     const [name, setName] = useState("");
-    const [emailid, setEmailid] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(name)
-        console.log(emailid)
+        console.log(email)
     }
-
+    const handleChange = (e) => {
+        e.preventDefault();
+      }
+      
+  const formik = useFormik({
+    initialValues: {
+    name: "",
+    email: "",
+    password: "",
+    password2:""
+    },
+    onSubmit: values => {
+        console.log(JSON.stringify(values, null, 2));
+      },
+    });
     return (
-        <form onSubmit={handleSubmit} class="col d-flex justify-content-center">
+        <form onSubmit={formik.handleSubmit} class="col d-flex justify-content-center">
             <div class="form-outline mb-4" >
                 <label>Enter your Name:
                     <input
                         class="form-control"
                         placeholder='Your name'
                         type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        name='name'
+                        id='name'
+                        required="This is required Field"
+                        minLength={5}
+                        value={formik.values.name}
+                        onChange={formik.handleChange}
                     />
                 </label><br></br><br></br>
                 <label>Enter your Emailid:
                     <input
                         class="form-control"
                         placeholder='Your Emailid'
-                        type="text"
-                        value={emailid}
-                        onChange={(e) => setEmailid(e.target.value)}
+                        type="email"
+                        name='email'
+                        required="This is required Field"
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
                     />
                 </label><br></br><br></br>
                 <label>Enter your Password:
@@ -41,8 +62,12 @@ function Registration() {
                         class="form-control"
                         placeholder='Your password'
                         type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        name='password'
+                        id='password'
+                        required="This is required Field"
+                        minLength={5}
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
                     />
                 </label><br></br><br></br>
                 <label>Enter your Confirm Password:
@@ -50,8 +75,12 @@ function Registration() {
                         class="form-control"
                         placeholder='Confirm password'
                         type="password"
-                        value={password2}
-                        onChange={(e) => setPassword2(e.target.value)}
+                        name='password2'
+                        id='password2'
+                        required="This is required Field"
+                        minLength={5}
+                        value={formik.values.password2}
+                        onChange={formik.handleChange}
                     />
                 </label><br></br><br></br>
                 <div>
