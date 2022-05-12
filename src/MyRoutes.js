@@ -11,7 +11,7 @@ function MyRoutes() {
   return (
       <div>
         <Router>
-          <Navigation />
+          <Navigation /><br></br>
               <Routes>
                   <Route  path='/login' element={< Login/>}/>
                   <Route  path='/registration' element={< Registration/>}/>
