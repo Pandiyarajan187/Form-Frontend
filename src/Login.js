@@ -82,7 +82,7 @@ function Login() {
             class="link-danger">Register</a></p>
         </div>
       </div>
-    </form>
+    </form> 
 
   )
 }

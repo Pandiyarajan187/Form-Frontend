@@ -2,23 +2,43 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState } from 'react';
 import { useFormik } from 'formik'
+import axios from 'axios';
 
 
 function Registration() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [password2, setPassword2] = useState("");
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(name)
-        console.log(email)
-    }
-    const handleChange = (e) => {
-        e.preventDefault();
+    const [formValue, setformValue] = useState({
+        name: "",
+        email: "",
+        password: "",
+        password2:""
+    })
+    const handleChange = (event) => {
+        setformValue({
+          ...formValue,
+          [event.target.name]: event.target.value
+        });
       }
       
+
+    const handleSubmit = () => {
+        const loginFormData = new FormData();
+        loginFormData.append("name", formValue.name)
+        loginFormData.append("email", formValue.email)
+        loginFormData.append("password", formValue.password)
+        loginFormData.append("password2", formValue.password2)
+    
+        axios.post('/api/register', 
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
+    
+ 
   const formik = useFormik({
     initialValues: {
     name: "",
@@ -31,7 +51,7 @@ function Registration() {
       },
     });
     return (
-        <form onSubmit={formik.handleSubmit} class="col d-flex justify-content-center">
+        <form onSubmit={handleSubmit} class="col d-flex justify-content-center">
             <div class="form-outline mb-4" >
                 <label>Enter your Name:
                     <input
@@ -42,8 +62,8 @@ function Registration() {
                         id='name'
                         required="This is required Field"
                         minLength={5}
-                        value={formik.values.name}
-                        onChange={formik.handleChange}
+                        value={formValue.name}
+                        onChange={handleChange}
                     />
                 </label><br></br><br></br>
                 <label>Enter your Emailid:
@@ -53,8 +73,8 @@ function Registration() {
                         type="email"
                         name='email'
                         required="This is required Field"
-                        value={formik.values.email}
-                        onChange={formik.handleChange}
+                        value={formValue.email}
+                        onChange={handleChange}
                     />
                 </label><br></br><br></br>
                 <label>Enter your Password:
@@ -66,8 +86,8 @@ function Registration() {
                         id='password'
                         required="This is required Field"
                         minLength={5}
-                        value={formik.values.password}
-                        onChange={formik.handleChange}
+                        value={formValue.password}
+                        onChange={handleChange}
                     />
                 </label><br></br><br></br>
                 <label>Enter your Confirm Password:
@@ -79,8 +99,8 @@ function Registration() {
                         id='password2'
                         required="This is required Field"
                         minLength={5}
-                        value={formik.values.password2}
-                        onChange={formik.handleChange}
+                        value={formValue.password2}
+                        onChange={handleChange}
                     />
                 </label><br></br><br></br>
                 <div>
