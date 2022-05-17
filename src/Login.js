@@ -3,7 +3,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useState } from 'react';
 import { useFormik } from 'formik'
 import * as yup from 'yup';
+<<<<<<< HEAD
 import TextField from '@material-ui/core/TextField';
+=======
+>>>>>>> 8aa3fc93dd178aa59850b7037cc70d2b76b7ccbe
 
 
 function Login() {
@@ -38,9 +41,13 @@ function Login() {
 
     <form onSubmit={formik.handleSubmit} class="col d-flex justify-content-center">
       <div class="form-outline mb-4" >
+<<<<<<< HEAD
       Enter your Email id:
         <label htmlFor="email">
         {/* <TextField id="outlined-basic" label="name" variant="outlined" /> */}
+=======
+        <label htmlFor="email">Enter your Email id:
+>>>>>>> 8aa3fc93dd178aa59850b7037cc70d2b76b7ccbe
           <input
             class="form-control"
             type="email"
@@ -54,8 +61,12 @@ function Login() {
           {/* {formik?.errors?.email} */}
         </label> <br></br><br></br>
         <div class="form-outline mb-4">
+<<<<<<< HEAD
         Enter your Password:
           <label htmlFor="password">
+=======
+          <label htmlFor="password">Enter your Password:
+>>>>>>> 8aa3fc93dd178aa59850b7037cc70d2b76b7ccbe
             <input
               class="form-control"
               type="password"
