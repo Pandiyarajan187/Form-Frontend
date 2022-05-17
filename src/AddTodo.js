@@ -27,7 +27,7 @@ function AddTodo() {
               minLength={5}
               value={task}
               error={task}
-              helperText={task.length && task.length < 5 ? "Pls enter max 5 Character" : ""} 
+              helperText={task.length && task.length < 5 ? "Please Enter max 5 Character" : ""} 
               onChange={(e) => setTask(e.target.value)}
             />
             <br></br>
